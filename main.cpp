@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include<chrono>
+#include <chrono>
 
 using namespace std;
 
@@ -16,7 +16,7 @@ public:
     time_t ticketTime = time(0);
     int ticketNumber = (int)ticketTime;
 
-    // Set the ticket data
+    // Set the ticket data using pointer to a current object
     this->ticketNumber = ticketNumber;
     this->busNumber = busNumber;
     this->name = name;
@@ -69,7 +69,7 @@ public:
   }
 private:
   int ticketNumber;
-  string busNumber;
+  string busNumber; //Remember busNumber is a data member of Ticket class not bus class and bus->number is different
   string name;
   string boardingPoint;
   string destination;
@@ -79,7 +79,7 @@ private:
 class Bus {
 public:
   Bus() {
-    // Set the default values for the fields
+    // Set default values without this, variables would be undefined
     this->number = "";
     this->stops = {};
   }
@@ -96,7 +96,7 @@ public:
 
   // Check if the maximum limit of tickets has been reached for this bus
   bool isFull() {
-    ifstream ticketData("tickets.csv");
+    ifstream ticketData("tickets.csv");//can't open in write mode otherwise getline function wont work
     if (!ticketData) {
       cout << "Error: Unable to open the ticket data file" << endl;
       return true;
@@ -191,7 +191,7 @@ int main() {
 
   // Find the bus numbers of the buses that go through the specified stops
   vector<string> matchingBuses;
-  for (unsigned int i = 0; i < buses.size(); i++) {
+  for (int i = 0; i < buses.size(); i++) {
     vector<string> stops = buses[i].getStops();
     // Check if the boarding and destination points are in the bus route
     if (find(stops.begin(), stops.end(), boardingPoint) != stops.end() &&
@@ -210,7 +210,7 @@ int main() {
 
   // Print the matching buses
   cout << "Matching buses: " << endl;
-  for (unsigned int i = 0; i < matchingBuses.size(); i++) {
+  for (int i = 0; i < matchingBuses.size(); i++) {
     cout << matchingBuses[i] << endl;
   }
 
@@ -225,7 +225,7 @@ int main() {
 
   // Find the selected bus
   Bus selectedBus;
-  for (unsigned int i = 0; i < buses.size(); i++) {
+  for (int i = 0; i < buses.size(); i++) {
     if (buses[i].getNumber() == busNumber) {
       selectedBus = buses[i];
       break;
