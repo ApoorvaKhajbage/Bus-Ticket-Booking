@@ -1,15 +1,34 @@
-#JAN PARIVAHAN.
-##CODE EXPLAINATION
- The code includes two classes: Ticket and Bus. The Ticket class is used to generate and store information about a bus ticket, such as the ticket number, bus number, passenger name, boarding point, destination, and fare. The Bus class is used to store information about a bus, such as the bus number and the stops the bus makes.
+# JAN PARIVAHAN - Bus Ticket Management System
 
-In the Ticket class, there is a constructor function that takes in the bus number, passenger name, boarding point, destination, and fare as arguments, and sets these values as the data for the ticket. The constructor also generates a ticket number by getting the current system time and converting it to an integer.
+## Overview
 
-There is also a function called writeToFile() that opens the "tickets.csv" file and writes the ticket data to it. The ticket data is written in the format of a comma-separated values (CSV) file, with each field separated by a comma.
+JAN PARIVAHAN is a simple bus ticket management system implemented in Python. It consists of two main classes: Ticket and Bus. The Ticket class handles ticket generation and storage, while the Bus class manages information about buses and their stops.
 
-In the printTicket() function, the ticket data is printed to the console in a formatted way. The time that the ticket was booked is also printed, along with the time that the ticket is valid until (one hour after the booking time).
+## Code Explanation
 
-In the Bus class, there are two constructors. The first constructor has no arguments and sets the default values for the bus number and stops. The second constructor takes in the bus number and stops as arguments, and sets these values as the data for the bus.
+### Ticket Class
+The Ticket class is responsible for generating and storing information about bus tickets. It includes the following functionalities:
 
-The getNumber() function returns the bus number, and the getStops() function returns the stops that the bus makes. The isFull() function checks if the maximum limit of tickets has been reached for the bus. It does this by opening the "tickets.csv" file and counting the number of tickets with the same bus number as the current bus. If the ticket count is equal to the maximum limit, the function returns true, indicating that the bus is full. Otherwise, it returns false.
+- **Constructor**: Initializes ticket data such as ticket number, bus number, passenger name, boarding point, destination, and fare. The ticket number is generated using the current system time.
+- **writeToFile()**: Writes ticket data to a CSV file named "tickets.csv" in a comma-separated format.
+- **printTicket()**: Formats and prints ticket information to the console, including the booking time and ticket validity.
 
-The bookTicket() function books a ticket for the current bus. It takes in the passenger name, boarding point, and destination as arguments. It first checks if the bus is full by calling the isFull() function. If the bus is full, an error message is displayed and the function returns. Otherwise, it calculates the fare based on the distance between the boarding point and destination, and creates a new Ticket object with the calculated fare. The ticket data is then written to the "tickets.csv" file and the ticket is printed to the console.
+### Bus Class
+The Bus class stores information about buses, including the bus number and stops. Key functionalities include:
+
+- **Constructors**: Two constructors, one with default values and another that accepts bus number and stops as arguments.
+- **getNumber()**: Returns the bus number.
+- **getStops()**: Returns the stops that the bus makes.
+- **isFull()**: Checks if the bus has reached its maximum ticket limit by counting the tickets associated with the bus in the "tickets.csv" file.
+- **bookTicket()**: Books a ticket for the current bus, calculating the fare based on the distance between the boarding point and destination. If the bus is full, it displays an error message; otherwise, it creates a new Ticket object, writes ticket data to the CSV file, and prints the ticket information.
+
+## Usage
+To use the JAN PARIVAHAN system:
+1. Instantiate Bus and Ticket objects as needed.
+2. Book tickets using the `bookTicket()` method of the Bus class.
+3. View booked tickets and their details using the `printTicket()` method of the Ticket class.
+
+## Note
+Ensure that the "tickets.csv" file exists and is writable by the program for ticket storage.
+
+This system provides a basic framework for managing bus tickets efficiently and can be further expanded to include additional features such as ticket cancellation, seat allocation, and user authentication.
